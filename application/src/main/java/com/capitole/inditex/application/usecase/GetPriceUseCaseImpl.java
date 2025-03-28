@@ -3,7 +3,8 @@ package com.capitole.inditex.application.usecase;
 import com.capitole.inditex.application.ports.input.GetPriceUseCase;
 import com.capitole.inditex.application.ports.output.PriceRepository;
 import com.capitole.inditex.domain.model.entity.Price;
-import com.capitole.inditex.domain.model.filter.PriceFilter;
+import com.capitole.inditex.domain.model.valueobject.PriceFilter;
+import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ public class GetPriceUseCaseImpl implements GetPriceUseCase {
 
   @Override
   @Transactional(readOnly = true)
-  public Price execute(InputValues input) {
+  public Collection<Price> execute(InputValues input) {
 
     final var filters = PriceFilter.builder()
         .applicationDate(input.getApplicationDate())
@@ -25,6 +26,6 @@ public class GetPriceUseCaseImpl implements GetPriceUseCase {
         .productId(input.getProductId())
         .build();
 
-    return this.priceRepository.findApplicablePrice(filters).orElseThrow();
+     return this.priceRepository.findApplicablePrice(filters);
   }
 }
