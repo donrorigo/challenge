@@ -1,0 +1,127 @@
+openapi: 3.0.0
+info:
+  title: Pricing API
+  description: API to retrieve applicable product prices
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+    description: Local server
+
+paths:
+  /brands/{brand_id}/products/{product_id}:
+    get:
+      summary: Get applicable prices for a product
+      description: Retrieves a list of applicable prices based on brand, product, and application date.
+      parameters:
+        - $ref: "#/components/parameters/brandId"
+        - $ref: "#/components/parameters/productId"
+        - $ref: "#/components/parameters/applicationDate"
+      responses:
+        "200":
+          $ref: "#/components/responses/PriceResponse"
+        "204":
+          description: No content - No applicable prices found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "400":
+          description: Invalid request parameters
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "404":
+          description: Not found - No prices found for the given filters
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+
+components:
+  parameters:
+    brandId:
+      name: brand_id
+      in: path
+      required: true
+      description: Brand identifier
+      schema:
+        type: integer
+        format: int64
+
+    productId:
+      name: product_id
+      in: path
+      required: true
+      description: Product identifier
+      schema:
+        type: integer
+        format: int64
+
+    applicationDate:
+      name: application_date
+      in: query
+      required: false
+      description: Date and time when the price should be applied (ISO 8601 format)
+      schema:
+        type: string
+        format: date-time
+
+  responses:
+    PriceResponse:
+      description: Successfully retrieved applicable prices
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Price"
+
+  schemas:
+    Price:
+      type: object
+      properties:
+        price:
+          type: number
+          format: double
+          description: Applicable price
+        currency:
+          type: string
+          description: Currency code (e.g., EUR, USD)
+        price_list_id:
+          type: integer
+          format: int32
+          description: Price list identifier
+        start_date:
+          type: string
+          format: date-time
+          description: Start date of the price validity period
+        end_date:
+          type: string
+          format: date-time
+          description: End date of the price validity period
+
+    ProblemDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          description: URI reference that identifies the error type
+          example: "https://api.example.com/errors/not-found"
+        title:
+          type: string
+          description: Short, human-readable summary of the problem
+          example: "Resource not found"
+        status:
+          type: integer
+          format: int32
+          description: HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: Detailed explanation of the error
+          example: "The product with the given ID was not found in the catalog."
+        instance:
+          type: string
+          description: Specific occurrence of the problem (e.g., request URI)
+          example: "/brands/1/products/35455"
