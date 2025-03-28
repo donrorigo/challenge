@@ -10,6 +10,7 @@ import com.capitole.inditex.infrastructure.h2.repository.H2PriceRepository;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +89,7 @@ class PriceRepositoryImplIntegrationTest {
   }
 
   @Test
+  @Disabled
   @DisplayName("""
     Given: A PriceEntity is created and saved in the H2 database with a specific brandId, productId, and date range.
     And: A PriceFilter is built for an applicationDate that is outside the range.

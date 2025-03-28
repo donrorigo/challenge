@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Rodrigo Puerto Pedrera
+      changes:
+        - createTable:
+            tableName: PRICES
+            columns:
+              - column:
+                  name: ID
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: BRAND_ID
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: START_DATE
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: END_DATE
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PRICE_LIST
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PRODUCT_ID
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PRIORITY
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: AMOUNT
+                  type: DECIMAL(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CURR
+                  type: VARCHAR(3)
+                  constraints:
+                    nullable: false

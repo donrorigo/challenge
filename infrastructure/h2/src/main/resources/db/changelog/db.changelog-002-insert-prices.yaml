@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Rodrigo Puerto Pedrera
+      changes:
+        - insert:
+            tableName: PRICES
+            columns:
+              - column:
+                  name: BRAND_ID
+                  value: 1
+              - column:
+                  name: START_DATE
+                  value: "2020-06-14T00:00:00"
+              - column:
+                  name: END_DATE
+                  value: "2020-12-31T23:59:59"
+              - column:
+                  name: PRICE_LIST
+                  value: 1
+              - column:
+                  name: PRODUCT_ID
+                  value: 35455
+              - column:
+                  name: PRIORITY
+                  value: 0
+              - column:
+                  name: AMOUNT
+                  value: 35.50
+              - column:
+                  name: CURR
+                  value: "EUR"
+
+        - insert:
+            tableName: PRICES
+            columns:
+              - column:
+                  name: BRAND_ID
+                  value: 1
+              - column:
+                  name: START_DATE
+                  value: "2020-06-14T15:00:00"
+              - column:
+                  name: END_DATE
+                  value: "2020-06-14T18:30:00"
+              - column:
+                  name: PRICE_LIST
+                  value: 2
+              - column:
+                  name: PRODUCT_ID
+                  value: 35455
+              - column:
+                  name: PRIORITY
+                  value: 1
+              - column:
+                  name: AMOUNT
+                  value: 25.45
+              - column:
+                  name: CURR
+                  value: "EUR"
+
+        - insert:
+            tableName: PRICES
+            columns:
+              - column:
+                  name: BRAND_ID
+                  value: 1
+              - column:
+                  name: START_DATE
+                  value: "2020-06-15T00:00:00"
+              - column:
+                  name: END_DATE
+                  value: "2020-06-15T11:00:00"
+              - column:
+                  name: PRICE_LIST
+                  value: 3
+              - column:
+                  name: PRODUCT_ID
+                  value: 35455
+              - column:
+                  name: PRIORITY
+                  value: 1
+              - column:
+                  name: AMOUNT
+                  value: 30.50
+              - column:
+                  name: CURR
+                  value: "EUR"
+
+        - insert:
+            tableName: PRICES
+            columns:
+              - column:
+                  name: BRAND_ID
+                  value: 1
+              - column:
+                  name: START_DATE
+                  value: "2020-06-15T16:00:00"
+              - column:
+                  name: END_DATE
+                  value: "2020-12-31T23:59:59"
+              - column:
+                  name: PRICE_LIST
+                  value: 4
+              - column:
+                  name: PRODUCT_ID
+                  value: 35455
+              - column:
+                  name: PRIORITY
+                  value: 1
+              - column:
+                  name: AMOUNT
+                  value: 38.95
+              - column:
+                  name: CURR
+                  value: "EUR"

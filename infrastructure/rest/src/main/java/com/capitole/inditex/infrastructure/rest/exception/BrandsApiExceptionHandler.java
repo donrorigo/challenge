@@ -34,7 +34,7 @@ public class BrandsApiExceptionHandler {
     problemDetail.setInstance(uri);
 
     String method = request.getMethod();
-    problemDetail.setDetail("Method: " + method + " - Reason: " + ex.getMessage());
+    problemDetail.setDetail("Method: " + method + " - Type: " + ex.getClass().getSimpleName() + " - Reason: " + ex.getMessage());
 
     String queryString = request.getParameterMap().entrySet().stream()
         .map(entry -> entry.getKey() + "=" + String.join(",", entry.getValue()))

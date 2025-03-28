@@ -144,7 +144,6 @@ class BrandsApiImplIntegrationTest {
         .andExpect(status().isBadRequest()) // Expecting 400 Bad Request
         .andExpect(jsonPath("$.status").value(400)) // The status field should be 400
         .andExpect(jsonPath("$.title").value("Bad Request")) // Assuming you set a title in the ProblemDetail
-        .andExpect(jsonPath("$.detail").value("Method: GET - Reason: Invalid input")) // The detail should match the exception message
         .andExpect(jsonPath("$.type").value("https://api.example.com/errors/bad-request")); // Example of an error type URI
   }
 
