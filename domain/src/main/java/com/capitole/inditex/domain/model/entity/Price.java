@@ -20,10 +20,6 @@ public class Price {
   private final Integer priority;
   private final Money money;
 
-  public final boolean isApplicableAt(LocalDateTime date) {
-    return (date.isEqual(this.startDate) || date.isAfter(this.startDate)) && date.isBefore(this.endDate);
-  }
-
   @Builder
   private Price(Long brandId,
       Long productId,
@@ -60,7 +56,7 @@ public class Price {
       }
 
       if (startDate.isAfter(endDate)) {
-        throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la de fin.");
+        throw new IllegalArgumentException("[Price] -> [validate]: Cannot instance because the start date cannot be after the end date.");
       }
 
       if (CurrencyUnit.registeredCurrencies().stream().noneMatch(currencyUnit -> currencyUnit.getCode().equals(currency)))
@@ -69,7 +65,7 @@ public class Price {
       }
 
       if (amount.compareTo(BigDecimal.ZERO) < 0) {
-        throw new IllegalArgumentException("El precio no puede ser negativo.");
+        throw new IllegalArgumentException("[Price] -> [validate]: Cannot instance because the amount cannot be negative");
       }
     }
   }
