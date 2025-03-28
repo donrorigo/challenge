@@ -1,10 +1,14 @@
 package com.capitole.inditex.infrastructure.rest.exception;
 
+import com.capitole.inditex.infrastructure.rest.utils.RestUtils;
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.context.Context;
 import jakarta.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -13,10 +17,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
+@RequiredArgsConstructor
 public class BrandsApiExceptionHandler {
 
-  @Autowired
-  private HttpServletRequest request;
+  private final HttpServletRequest request;
+  private final RestUtils restUtils;
 
   @ExceptionHandler(RuntimeException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -39,7 +44,7 @@ public class BrandsApiExceptionHandler {
     String queryString = request.getParameterMap().entrySet().stream()
         .map(entry -> entry.getKey() + "=" + String.join(",", entry.getValue()))
         .collect(Collectors.joining("&"));
-    problemDetail.setProperties(Map.of("query", queryString));
+    problemDetail.setProperties(Map.of("query", queryString, "traceId", restUtils.getTraceId()));
   }
 
 }

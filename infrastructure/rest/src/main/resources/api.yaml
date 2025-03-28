@@ -125,3 +125,7 @@ components:
           type: string
           description: Specific occurrence of the problem (e.g., request URI)
           example: "/brands/1/products/35455"
+        query:
+          type: string
+          description: Short, human-readable map of parameters associated to the request
+          example: "application_date=2026-06-14T16:00:0"
