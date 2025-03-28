@@ -14,6 +14,7 @@ import com.capitole.inditex.domain.model.valueobject.PriceFilter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -64,7 +65,7 @@ class GetPriceUseCaseImplTest {
 
     // When
     List<Price> actualPrices = (List<Price>) getPriceUseCase.execute(GetPriceUseCase.InputValues.builder()
-        .applicationDate(applicationDate)
+        .applicationDate(Optional.of(applicationDate))
         .brandId(brandId)
         .productId(productId)
         .build());
@@ -91,7 +92,7 @@ class GetPriceUseCaseImplTest {
 
     // When
     List<Price> actualPrices = (List<Price>) getPriceUseCase.execute(GetPriceUseCase.InputValues.builder()
-        .applicationDate(applicationDate)
+        .applicationDate(Optional.of(applicationDate))
         .brandId(brandId)
         .productId(productId)
         .build());

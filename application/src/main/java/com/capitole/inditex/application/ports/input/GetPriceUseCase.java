@@ -4,7 +4,9 @@ import com.capitole.inditex.application.ports.input.GetPriceUseCase.InputValues;
 import com.capitole.inditex.domain.model.entity.Price;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Optional;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Data;
 
 public interface GetPriceUseCase extends GeneralUseCase<InputValues, Collection<Price>> {
@@ -18,6 +20,6 @@ public interface GetPriceUseCase extends GeneralUseCase<InputValues, Collection<
   {
     private Long productId;
     private Long brandId;
-    private LocalDateTime applicationDate;
+    @Builder.Default private Optional<LocalDateTime> applicationDate = Optional.empty();
   }
 }

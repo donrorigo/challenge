@@ -5,6 +5,7 @@ import com.capitole.inditex.application.ports.output.PriceRepository;
 import com.capitole.inditex.domain.model.entity.Price;
 import com.capitole.inditex.domain.model.valueobject.PriceFilter;
 import java.util.Collection;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ public class GetPriceUseCaseImpl implements GetPriceUseCase {
   public Collection<Price> execute(InputValues input) {
 
     final var filters = PriceFilter.builder()
-        .applicationDate(input.getApplicationDate())
+        .applicationDate(input.getApplicationDate().orElse(null))
         .brandId(input.getBrandId())
         .productId(input.getProductId())
         .build();
