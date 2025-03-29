@@ -15,6 +15,7 @@ public class OffsetDateTimeConverter implements Converter<String, OffsetDateTime
 
   private final Tracer tracer;
   private final RestUtils restUtils;
+
   @Override
   public OffsetDateTime convert(final String source) {
     Span span = tracer.spanBuilder("parseDate").startSpan();
