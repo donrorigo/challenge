@@ -1,6 +1,8 @@
 package com.capitole.inditex.infrastructure.h2.adapter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.capitole.inditex.domain.model.entity.Price;
 import com.capitole.inditex.domain.model.valueobject.PriceFilter;
@@ -67,25 +69,6 @@ class PriceRepositoryImplIntegrationTest {
 
     assertFalse(prices.isEmpty());
     assertTrue(prices.stream().anyMatch(price -> price.getBrandId().equals(priceEntity.getBrandId()) && price.getProductId().equals(priceEntity.getProductId())));
-  }
-
-  @Test
-  @DisplayName("""
-    Given: A PriceFilter is created with non-existing brandId and productId.
-    When: The repository is queried through the custom implementation.
-    Then: A RuntimeException is expected to be thrown with a message indicating no price was found.
-    """)
-  void testFindApplicablePriceThrowsExceptionWhenNoPriceFound() {
-
-    PriceFilter filter = PriceFilter.builder()
-        .applicationDate(LocalDateTime.of(2020, 6, 15, 10, 0))
-        .brandId(999L)  // brand does not exist in database
-        .productId(999L) // product does not exist in database
-        .build();
-
-    RuntimeException exception = assertThrows(RuntimeException.class, () -> priceRepositoryImpl.findApplicablePrice(filter));
-
-    assertEquals("No price found for the given brandId and productId.", exception.getMessage());
   }
 
   @Test

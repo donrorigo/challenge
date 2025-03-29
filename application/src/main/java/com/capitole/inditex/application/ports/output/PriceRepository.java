@@ -6,4 +6,5 @@ import java.util.Collection;
 
 public interface PriceRepository {
   Collection<Price> findApplicablePrice(PriceFilter filter);
+  void validatePricePresent(final Long brandId, final Long productId);
 }

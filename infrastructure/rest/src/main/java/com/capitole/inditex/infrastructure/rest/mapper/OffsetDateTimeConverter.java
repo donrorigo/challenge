@@ -1,5 +1,6 @@
 package com.capitole.inditex.infrastructure.rest.mapper;
 
+import com.capitole.inditex.application.exception.InvalidDateFormatException;
 import com.capitole.inditex.infrastructure.rest.utils.RestUtils;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
@@ -22,7 +23,10 @@ public class OffsetDateTimeConverter implements Converter<String, OffsetDateTime
     restUtils.setTraceId(span.getSpanContext().getTraceId());
     try {
       return OffsetDateTime.parse(source, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-    }finally {
+    } catch (RuntimeException e){
+      throw new InvalidDateFormatException(e.getMessage());
+    }
+    finally {
       span.end();
     }
   }

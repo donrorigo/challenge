@@ -1,5 +1,6 @@
 package com.capitole.inditex.infrastructure.h2.adapter;
 
+import com.capitole.inditex.application.exception.PriceNotFoundException;
 import com.capitole.inditex.application.ports.output.PriceRepository;
 import com.capitole.inditex.domain.model.entity.Price;
 import com.capitole.inditex.domain.model.valueobject.PriceFilter;
@@ -21,11 +22,14 @@ public class PriceRepositoryImpl implements PriceRepository {
   @Override
   @Transactional(readOnly = true)
   public Collection<Price> findApplicablePrice(PriceFilter filter) {
-    if (filter.hasBaseFilters() && !this.repository.existsByBrandIdAndProductId(filter.brandId(),
-        filter.productId()))
-    {
-      throw new RuntimeException("No price found for the given brandId and productId.");
-    }
     return this.mapper.toDomainCollection(this.repository.findAll(PriceSpecification.withFilters(filter)));
+  }
+
+  @Override
+  public void validatePricePresent(final Long brandId, final Long productId) {
+    if (!this.repository.existsByBrandIdAndProductId(brandId, productId))
+    {
+      throw new PriceNotFoundException("No price found for the given brandId and productId.");
+    }
   }
 }

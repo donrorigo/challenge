@@ -1,5 +1,13 @@
 package com.capitole.inditex.infrastructure.rest.listener;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.capitole.inditex.application.exception.InvalidFilterParametersException;
 import com.capitole.inditex.application.ports.input.GetPriceUseCase;
 import com.capitole.inditex.domain.model.entity.Price;
 import com.capitole.inditex.infrastructure.rest.mapper.ControllerMapper;
@@ -14,21 +22,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -128,14 +129,14 @@ class BrandsApiImplIntegrationTest {
     When: The exception is handled by the controller advice.
     Then: The response returns a 400 Bad Request status with the exception message in the body.
     """)
-  void testRuntimeExceptionHandler() throws Exception {
+  void testInvalidFilterParametersExceptionHandler() throws Exception {
     Long brandId = 1L;
     Long productId = 35455L;
     OffsetDateTime applicationDate = OffsetDateTime.of(2020, 6, 14, 10, 0, 0, 0, ZoneOffset.UTC);
 
     // Mock the service to throw a RuntimeException
     when(getPriceUseCase.execute(any(GetPriceUseCase.InputValues.class)))
-        .thenThrow(new RuntimeException("Invalid input"));
+        .thenThrow(new InvalidFilterParametersException("Invalid input"));
 
     // Perform the GET request and check the response
     mockMvc.perform(get("/brands/{brandId}/products/{productId}", brandId, productId)
