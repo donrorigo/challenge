@@ -20,6 +20,7 @@
     <module>application</module>
     <module>infrastructure</module>
     <module>main</module>
+    <module>behavior-tests</module>
   </modules>
 
   <properties>
