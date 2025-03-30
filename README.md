@@ -62,11 +62,11 @@ Requisitos Previos
 
 -   **Docker**
 
--   **Kubernetes** (por ejemplo, Minikube o Kind para entornos locales)
+-   (Pendiente) **Kubernetes** (por ejemplo, Minikube o Kind para entornos locales)
 
--   **Helm**
+-   (Pendiente) **Helm**
 
--   (Opcional) **Jaeger**: Para visualizar trazas. Puedes levantarlo usando Docker:
+-   **Jaeger**: Para visualizar trazas. Puedes levantarlo usando Docker:
 
 
 ``` 
