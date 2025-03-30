@@ -120,7 +120,7 @@ Configuración Adicional
 
 -   Configuración en `OpenTelemetryConfig.java` en el módulo de infraestructura:
 
-    -   Exportador Zipkin configurado en `http://localhost:14250`.
+    -   Exportador Jaeger configurado en `http://localhost:14250`.
 
     -   El `Tracer` se crea con el nombre `"pricing-service"` y la versión `"1.0"`.
 
