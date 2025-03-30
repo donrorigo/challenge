@@ -19,7 +19,7 @@ public final class PriceFilter {
   public PriceFilter(Long brandId, Long productId, LocalDateTime applicationDate) {
     if (brandId == null && productId == null)
     {
-      throw new InvalidFilterParametersException("Cannot instance GetPriceUseCase.InputValues because there are no brand and product given");
+      throw new InvalidFilterParametersException("Cannot instance PriceFilter because there are no brand and product given");
     }
     this.brandId = brandId;
     this.productId = productId;
