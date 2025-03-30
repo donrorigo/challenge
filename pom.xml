@@ -20,7 +20,6 @@
     <module>application</module>
     <module>infrastructure</module>
     <module>main</module>
-    <module>behavior-tests</module>
   </modules>
 
   <properties>
@@ -55,4 +54,14 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+
+  <profiles>
+    <profile>
+      <id>behavior-tests</id>
+      <modules>
+        <module>behavior-tests</module>
+      </modules>
+    </profile>
+  </profiles>
 </project>
