@@ -1,11 +1,11 @@
 package com.capitole.inditex.domain.model.valueobject;
 
+import com.capitole.inditex.domain.model.exception.InvalidFilterParametersException;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
-@Builder
 @Getter
 @Accessors(fluent = true)
 public final class PriceFilter {
@@ -14,8 +14,15 @@ public final class PriceFilter {
   private final Long productId;
   private final LocalDateTime applicationDate;
 
-  public boolean hasBaseFilters()
-  {
-    return this.brandId != null && this.productId != null;
+
+  @Builder
+  public PriceFilter(Long brandId, Long productId, LocalDateTime applicationDate) {
+    if (brandId == null && productId == null)
+    {
+      throw new InvalidFilterParametersException("Cannot instance GetPriceUseCase.InputValues because there are no brand and product given");
+    }
+    this.brandId = brandId;
+    this.productId = productId;
+    this.applicationDate = applicationDate;
   }
 }

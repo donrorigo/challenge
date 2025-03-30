@@ -1,7 +1,7 @@
 package com.capitole.inditex.infrastructure.rest.exception;
 
 import com.capitole.inditex.application.exception.InvalidDateFormatException;
-import com.capitole.inditex.application.exception.InvalidFilterParametersException;
+import com.capitole.inditex.domain.model.exception.InvalidFilterParametersException;
 import com.capitole.inditex.application.exception.PriceNotFoundException;
 import com.capitole.inditex.infrastructure.rest.utils.RestUtils;
 import jakarta.servlet.http.HttpServletRequest;

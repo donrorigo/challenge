@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.capitole.inditex.application.exception.InvalidFilterParametersException;
+import com.capitole.inditex.domain.model.exception.InvalidFilterParametersException;
 import com.capitole.inditex.application.ports.input.GetPriceUseCase;
 import com.capitole.inditex.domain.model.entity.Price;
 import com.capitole.inditex.infrastructure.rest.mapper.ControllerMapper;

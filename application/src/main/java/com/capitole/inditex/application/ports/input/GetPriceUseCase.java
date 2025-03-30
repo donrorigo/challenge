@@ -1,6 +1,6 @@
 package com.capitole.inditex.application.ports.input;
 
-import com.capitole.inditex.application.exception.InvalidFilterParametersException;
+import com.capitole.inditex.domain.model.exception.InvalidFilterParametersException;
 import com.capitole.inditex.application.ports.input.GetPriceUseCase.InputValues;
 import com.capitole.inditex.domain.model.entity.Price;
 import java.time.LocalDateTime;

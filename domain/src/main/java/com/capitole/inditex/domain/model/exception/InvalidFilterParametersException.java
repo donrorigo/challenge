@@ -1,4 +1,4 @@
-package com.capitole.inditex.application.exception;
+package com.capitole.inditex.domain.model.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
