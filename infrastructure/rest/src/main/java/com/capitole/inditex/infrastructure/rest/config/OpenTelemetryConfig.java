@@ -17,9 +17,6 @@ public class OpenTelemetryConfig {
 
   @Bean
   public OpenTelemetry openTelemetry() {
-//    ZipkinSpanExporter zipkinExporter = ZipkinSpanExporter.newBuilder()
-//        .setEndpoint("http://localhost:9411/api/v2/spans")
-//        .build();
 
     JaegerGrpcSpanExporter jaegerExporter = JaegerGrpcSpanExporter.builder()
         .setEndpoint("http://localhost:14250")
