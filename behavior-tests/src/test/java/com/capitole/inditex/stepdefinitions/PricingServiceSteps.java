@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import com.capitole.inditex.infrastructure.rest.model.PriceDto;
 import io.cucumber.datatable.DataTable;
@@ -46,11 +44,9 @@ public class PricingServiceSteps {
     List<PriceDto> prices = Optional.ofNullable(response.getBody())
         .orElseThrow(() -> new AssertionError("Response body is null"));
 
-    // Convertir los valores esperados
     int expectedTariffId = Integer.parseInt(expectedTariff);
     double expectedPriceValue = Double.parseDouble(expectedPrice);
 
-    // Buscar el precio esperado
     Optional<PriceDto> matchingPrice = prices.stream()
         .filter(price -> price.getPriceListId() == expectedTariffId && price.getPrice() == expectedPriceValue)
         .findFirst();
